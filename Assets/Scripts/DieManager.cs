@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class DieManager : MonoBehaviour
 {
     public GameObject tray;
+    public Image trayImg;
+    public RectTransform trayRect;
     public GameObject queueBar;
+    public Image queueImg;
+    public RectTransform queueRect;
     
     public struct Die
     {
@@ -19,7 +23,7 @@ public class DieManager : MonoBehaviour
 
     public Dictionary<string, Sprite> imageLib = new Dictionary<string, Sprite>();
 
-    Vector3[] dieStates = new Vector3[] { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
+    List<Vector3Int> dieStates = new List<Vector3Int>();
     // The X value is the die's current value
     // The Y value is the die's position in the queue (zero if not in queue)
     // The Z value is the current action
@@ -29,8 +33,12 @@ public class DieManager : MonoBehaviour
     void Start()
     {
         tray = transform.GetChild(0).gameObject;
+        trayImg = tray.GetComponent<Image>();
+        trayRect = tray.GetComponent<RectTransform>();
         queueBar = transform.GetChild(1).gameObject;
-        for (int i = 2; i < 8; i++)
+        queueImg = queueBar.GetComponent<Image>();
+        trayRect = queueBar.GetComponent<RectTransform>();
+        for (int i = 2; i < transform.childCount; i++)
         {
             Die newDie = new Die
             {
@@ -41,6 +49,8 @@ public class DieManager : MonoBehaviour
             };
             dice.Add(newDie);
         }
+        for (int i = 0; i < dice.Count; i++)
+            dieStates.Add(Vector3Int.zero);
 
         imageLib = new Dictionary<string, Sprite>
         {
@@ -63,10 +73,10 @@ public class DieManager : MonoBehaviour
     {
         for (int i = 0; i < dice.Count; i++)
         {
-            dice[i].dieObj.transform.localPosition = Vector2.Lerp(dice[i].dieObj.transform.localPosition, dieStates[i].y == 0 ?
-                new Vector2() : new Vector2(), // Still working on this
-                LERP_VALUE * Time.deltaTime
-                );
+            //dice[i].dieObj.transform.localPosition = Vector2.Lerp(dice[i].dieObj.transform.localPosition, dieStates[i].y == 0 ?
+            //    new Vector2(tray.transform.localPosition.x + (trayRect.localScale.x / 3 * (i + 1))) : new Vector2(),
+            //    LERP_VALUE * Time.deltaTime
+            //    );
         }
     }
 }
