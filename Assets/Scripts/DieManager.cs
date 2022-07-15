@@ -38,7 +38,6 @@ public class DieManager:MonoBehaviour {
         queueRect.anchorMax = new Vector2(0.5f, 0);
 
         dieObj = Resources.Load<GameObject>("Objects/Die");
-        spriteLib = Resources.LoadAll<Sprite>("Images/DiceSheet");
     }
 
     public void Update() {

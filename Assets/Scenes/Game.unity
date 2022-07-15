@@ -4708,7 +4708,21 @@ MonoBehaviour:
   dieRoller: {fileID: 33498702}
   maxRolls: 3
   currentQueue: []
-  spriteLib: []
+  spriteLib:
+  - {fileID: 117070855636090705, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: 8946179973568728277, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -432937922441092542, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: 1762035888807154931, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -7259020324412351266, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -2373618179460384083, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -4645838646287847144, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: 6797697351619920422, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: 7650961845677295174, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -7736799108948283672, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -696790561046871343, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -3967944346126386904, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: 129572150573724943, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
+  - {fileID: -7710241764388013416, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
 --- !u!1 &1186382726
 GameObject:
   m_ObjectHideFlags: 0
