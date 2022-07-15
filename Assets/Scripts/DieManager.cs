@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DieManager:MonoBehaviour {
+    public physdieController dieRoller;
+
     GameObject queueBar;
     Image queueImg;
     RectTransform queueRect;

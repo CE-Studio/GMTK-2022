@@ -773,6 +773,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &33498702 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8699417715089210873, guid: bf678cd93d16ebf428543aaefc4fd007, type: 3}
+  m_PrefabInstance: {fileID: 737086974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1893efd991fe145a018599b3e1592e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &376415427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4346,6 +4357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81476678805c2364cb206d815c481b42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dieRoller: {fileID: 33498702}
   maxRolls: 3
   currentQueue: []
   spriteLib: []
