@@ -37,8 +37,7 @@ public class DieManager:MonoBehaviour {
     }
 
     public void Update() {
-        queueRect.sizeDelta = Vector2.Lerp(queueRect.sizeDelta, new Vector2(dieSize.x * maxRolls + SPACE_BUFFER * (maxRolls + 1),
-            dieSize.y + SPACE_BUFFER * 2), LERP_VALUE * Time.deltaTime);
+        queueRect.sizeDelta = Vector2.Lerp(queueRect.sizeDelta, new Vector2(dieSize.x * maxRolls + SPACE_BUFFER * (maxRolls + 1), dieSize.y), LERP_VALUE * Time.deltaTime);
         for (int i = 0; i < dice.Count; i++) {
             //dice[i].dieRect.position = Vector2.Lerp(dice[i].dieRect.position, new Vector2(queueRect.position.x - (queueRect.sizeDelta.x * 0.5f) +
             //    (SPACE_BUFFER * i) + (dieSize.x * (i - 1)) + (dieSize.x * 0.5f), queueRect.position.y), LERP_VALUE * Time.deltaTime);
@@ -53,7 +52,7 @@ public class DieManager:MonoBehaviour {
         newDie.dieRect = newDie.dieObj.GetComponent<RectTransform>();
         newDie.dieImg = newDie.dieObj.GetComponent<Image>();
         newDie.dieImg.sprite = GetSprite(name);
-        newDie.dieRect.position = new Vector2(queueRect.position.x, queueRect.position.y - 256);
+        newDie.dieRect.position = new Vector2(queueRect.position.x, queueRect.position.y + 512);
         dice.Add(newDie);
     }
 
