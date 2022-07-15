@@ -33,7 +33,7 @@ public class DieManager:MonoBehaviour {
         queueRect.anchorMax = new Vector2(0.5f, 0);
 
         dieObj = Resources.Load<GameObject>("Objects/Die");
-        spriteLib = Resources.LoadAll<Sprite>("Images/Dice");
+        spriteLib = Resources.LoadAll<Sprite>("Images/DiceSheet");
     }
 
     public void Update() {
@@ -60,22 +60,19 @@ public class DieManager:MonoBehaviour {
     private Sprite GetSprite(string name) {
         return spriteLib[name.ToLower().Replace(" ", "") switch {
             "move1" => 0,
-            "m1" => 0,
             "move2" => 1,
-            "m2" => 1,
             "move3" => 2,
-            "m3" => 2,
             "move4" => 3,
-            "m4" => 3,
             "move5" => 4,
-            "m5" => 4,
             "move6" => 5,
-            "m6" => 5,
             "turncw" => 6,
-            "cw" => 6,
             "turnccw" => 7,
-            "ccw" => 7,
-            "action" => 8,
+            "use" => 8,
+            "sword" => 9,
+            "360" => 10,
+            "bow" => 11,
+            "pickup" => 12,
+            "set" => 13,
             _ => 0
         }];
     }
