@@ -14,14 +14,19 @@ public class physdieController : MonoBehaviour {
     public int curmode = 0;
 
     void Start() {
-        roll(1);
+        gameObject.SetActive(false);
+        transform.localPosition = new Vector3(0, 0, -1);
+        roll(0);
     }
 
     void Update() {
-        
+        if (rb.IsSleeping()) {
+            Start();
+        }
     }
 
     public void roll(int mode) {
+        rb.WakeUp();
         gameObject.SetActive(true);
         curmode = mode;
         switch (mode) {
