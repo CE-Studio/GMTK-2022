@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DieManager : MonoBehaviour
-{
+public class DieManager:MonoBehaviour {
     public GameObject tray;
     public Image trayImg;
     public RectTransform trayRect;
     public GameObject queueBar;
     public Image queueImg;
     public RectTransform queueRect;
-    
-    public struct Die
-    {
+
+    public struct Die {
         public GameObject dieObj;
         public Image dieSprite;
         public GameObject actionObj;
@@ -29,19 +27,16 @@ public class DieManager : MonoBehaviour
     // The Z value is the current action
 
     private const float LERP_VALUE = 15;
-    
-    void Start()
-    {
+
+    void Start() {
         tray = transform.GetChild(0).gameObject;
         trayImg = tray.GetComponent<Image>();
         trayRect = tray.GetComponent<RectTransform>();
         queueBar = transform.GetChild(1).gameObject;
         queueImg = queueBar.GetComponent<Image>();
         trayRect = queueBar.GetComponent<RectTransform>();
-        for (int i = 2; i < transform.childCount; i++)
-        {
-            Die newDie = new Die
-            {
+        for (int i = 2; i < transform.childCount; i++) {
+            Die newDie = new Die {
                 dieObj = transform.GetChild(i).gameObject,
                 dieSprite = transform.GetChild(i).GetComponent<Image>(),
                 actionObj = transform.GetChild(i).GetChild(0).gameObject,
@@ -69,10 +64,8 @@ public class DieManager : MonoBehaviour
         };
     }
 
-    void Update()
-    {
-        for (int i = 0; i < dice.Count; i++)
-        {
+    void Update() {
+        for (int i = 0; i < dice.Count; i++) {
             //dice[i].dieObj.transform.localPosition = Vector2.Lerp(dice[i].dieObj.transform.localPosition, dieStates[i].y == 0 ?
             //    new Vector2(tray.transform.localPosition.x + (trayRect.localScale.x / 3 * (i + 1))) : new Vector2(),
             //    LERP_VALUE * Time.deltaTime
