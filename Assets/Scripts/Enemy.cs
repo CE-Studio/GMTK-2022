@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
 
     public Vector2Int intendedPos = Vector2Int.zero;
     private const float LERP_VALUE = 10;
+    public Vector2Int lastPos = new Vector2Int(999, 999);
     
     void Start()
     {
