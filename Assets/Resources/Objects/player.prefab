@@ -98,22 +98,22 @@ MonoBehaviour:
   sr: {fileID: 4867038974204500527}
   playarea: {fileID: 0}
   traversable:
-  - doorSingle_open
-  - doorRowLeft_open
-  - doorRowBody_open
-  - doorRowRight_open
-  - doorColumnTop_open
-  - doorLTopleft_open
-  - doorTDown_open
-  - doorLTopright_open
-  - doorColumnBody_open
-  - doorTRight_open
-  - doorCenter_open
-  - doorTLeft_open
-  - doorColumnBottom_open
-  - doorLBottomleft_open
-  - doorTUp_open
-  - doorLBottomright_open
+  - door1_open
+  - door2_open
+  - door3_open
+  - door4_open
+  - door5_open
+  - door6_open
+  - door7_open
+  - door8_open
+  - door9_open
+  - door10_open
+  - door11_open
+  - door12_open
+  - door13_open
+  - door14_open
+  - door15_open
+  - door16_open
   manager: {fileID: 0}
   pathArrowPrefab: {fileID: 7128718542072344075, guid: 30f9974d73a3beb46bf5f6982f39b46c, type: 3}
   sprites:
