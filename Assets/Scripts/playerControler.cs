@@ -41,6 +41,9 @@ public class playerControler : MonoBehaviour {
         boxControler i;
         if (boxManager.getAt(pos, out i))
             return false;
+        Enemy h;
+        if (EnemyManager.getAt(pos, out h))
+            return false;
         Tile tile = playarea.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
         if (tile == null) return true;
         print(tile.name);
