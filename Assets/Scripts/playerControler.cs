@@ -38,6 +38,9 @@ public class playerControler : MonoBehaviour {
     }
 
     bool isTraversable(Vector2Int pos) {
+        boxControler i;
+        if (boxManager.bm.getAt(pos, out i))
+            return false;
         Tile tile = playarea.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
         if (tile == null) return true;
         print(tile.name);

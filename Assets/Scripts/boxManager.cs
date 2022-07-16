@@ -15,10 +15,9 @@ public class boxManager : MonoBehaviour {
 
     public bool getAt(Vector2Int pos, out boxControler result) {
         foreach (boxControler i in boxes) {
-            print(Vector2Int.FloorToInt(i.transform.localPosition).ToString() + " " + pos + " " + (Vector2Int.FloorToInt(i.transform.localPosition) == pos).ToString());
             if (Vector2Int.FloorToInt(i.transform.localPosition) == pos) {
                 result = i;
-                return true;
+                return !i.beingHeld;
             }
         }
         result = null;
