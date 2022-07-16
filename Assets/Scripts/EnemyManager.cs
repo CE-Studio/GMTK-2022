@@ -9,7 +9,11 @@ public class EnemyManager
     public static void MoveEnemies() {
         foreach (GameObject enemy in enemies) {
             switch (enemy.name) {
-                
+                default:
+                case "Enemy blob":
+                case "Enemy blob(Clone)":
+                    enemy.GetComponent<EnemyBlob>().Move();
+                    break;
             }
         }
     }
