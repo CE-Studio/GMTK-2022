@@ -12,7 +12,7 @@ public class boxControler : MonoBehaviour {
 
     void Update() {
         if (beingHeld) {
-            transform.localPosition = playerControler.thePlayer.transform.position + new Vector3(0, 0.5f, 0);
+            transform.localPosition = playerControler.thePlayer.transform.localPosition + new Vector3(0, 0.87f, 0);
         } else {
             transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
         }

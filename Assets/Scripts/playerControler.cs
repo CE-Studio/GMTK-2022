@@ -120,8 +120,86 @@ public class playerControler : MonoBehaviour {
         updateSprite();
     }
 
-    void action(int actmode) { 
-    
+    void action(int actmode) {
+        switch (actmode) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                pickup();
+                break;
+            case 4:
+                drop();
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+        }
+        updateSprite();
+    }
+
+    void pickup() {
+        if (mode != 1) {
+            switch (dir) {
+                case 0:
+                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down))
+                        mode = 1;
+                    break;
+                case 1:
+                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left))
+                        mode = 1;
+                    break;
+                case 2:
+                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up))
+                        mode = 1;
+                    break;
+                case 3:
+                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right))
+                        mode = 1;
+                    break;
+            }
+        }
+    }
+
+    void drop() {
+        if (mode == 1) {
+            switch (dir) {
+                case 0:
+                    if (isLocallyTraversable(Vector2Int.down)) {
+                        boxManager.lastheld.beingHeld = false;
+                        Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down + new Vector2(0.5f, 0.5f);
+                        boxManager.lastheld.transform.localPosition = pos;
+                        mode = 0;
+                    }
+                    break;
+                case 1:
+                    if (isLocallyTraversable(Vector2Int.left)) {
+                        boxManager.lastheld.beingHeld = false;
+                        Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left + new Vector2(0.5f, 0.5f);
+                        boxManager.lastheld.transform.localPosition = pos;
+                        mode = 0;
+                    }
+                    break;
+                case 2:
+                    if (isLocallyTraversable(Vector2Int.up)) {
+                        boxManager.lastheld.beingHeld = false;
+                        Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up + new Vector2(0.5f, 0.5f);
+                        boxManager.lastheld.transform.localPosition = pos;
+                        mode = 0;
+                    }
+                    break;
+                case 3:
+                    if (isLocallyTraversable(Vector2Int.right)) {
+                        boxManager.lastheld.beingHeld = false;
+                        Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right + new Vector2(0.5f, 0.5f);
+                        boxManager.lastheld.transform.localPosition = pos;
+                        mode = 0;
+                    }
+                    break;
+            }
+        }
     }
 
     public void visualizePath(DieManager.Die[] instructions) {
