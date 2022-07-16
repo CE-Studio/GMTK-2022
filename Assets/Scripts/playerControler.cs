@@ -129,8 +129,10 @@ public class playerControler : MonoBehaviour {
     void action(int actmode) {
         switch (actmode) {
             case 1:
+                stabOne();
                 break;
             case 2:
+                stabLine();
                 break;
             case 3:
                 pickup();
@@ -139,6 +141,7 @@ public class playerControler : MonoBehaviour {
                 drop();
                 break;
             case 5:
+                stabSwoosh();
                 break;
             case 6:
                 break;
@@ -278,6 +281,60 @@ public class playerControler : MonoBehaviour {
                 case 2:
                     break;
             }
+        }
+    }
+
+    void stabOne() {
+        switch (dir) {
+            case 0:
+                stabLocally(Vector2Int.down);
+                break;
+            case 1:
+                stabLocally(Vector2Int.left);
+                break;
+            case 2:
+                stabLocally(Vector2Int.up);
+                break;
+            case 3:
+                stabLocally(Vector2Int.right);
+                break;
+        }
+    }
+
+    void stabLine() {
+        for (int i = 1; i < 6; i++) {
+            switch (dir) {
+                case 0:
+                    stabLocally(new Vector2Int(0, -i));
+                    break;
+                case 1:
+                    stabLocally(new Vector2Int(-i, 0));
+                    break;
+                case 2:
+                    stabLocally(new Vector2Int(0, i));
+                    break;
+                case 3:
+                    stabLocally(new Vector2Int(i, 0));
+                    break;
+            }
+        }
+    }
+
+    void stabSwoosh() {
+        stabLocally(new Vector2Int(0, -1));
+        stabLocally(new Vector2Int(-1, -1));
+        stabLocally(new Vector2Int(-1, 0));
+        stabLocally(new Vector2Int(-1, 1));
+        stabLocally(new Vector2Int(0, 1));
+        stabLocally(new Vector2Int(1, 1));
+        stabLocally(new Vector2Int(1, 0));
+        stabLocally(new Vector2Int(1, -1));
+    }
+
+    void stabLocally(Vector2Int pos) {
+        Enemy hit;
+        if (EnemyManager.getAt(Vector2Int.FloorToInt(transform.localPosition) + pos, out hit)) {
+            hit.kill();
         }
     }
 }
