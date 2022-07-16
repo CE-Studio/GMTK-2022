@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class DieManager:MonoBehaviour {
     public physdieController dieRoller;
-    public playerControler player;
 
     public Button[] buttons;
 
@@ -85,7 +84,7 @@ public class DieManager:MonoBehaviour {
         newDie.dieImg.sprite = GetSprite(data);
         newDie.dieRect.localPosition = new Vector2(queueRect.localPosition.x, queueRect.localPosition.y + 512);
         dice.Add(newDie);
-        player.visualizePath(dice.ToArray());
+        playerControler.thePlayer.visualizePath(dice.ToArray());
     }
 
     public void RemoveFrontDie() {
@@ -105,7 +104,7 @@ public class DieManager:MonoBehaviour {
 
     public void beginTurn() {
         if (dice.Count > 0) {
-            player.startMove(dice.ToArray());
+            playerControler.thePlayer.startMove(dice.ToArray());
             setButtonState(false);
         }
     }

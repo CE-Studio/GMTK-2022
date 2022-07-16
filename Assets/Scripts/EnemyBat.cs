@@ -7,17 +7,17 @@ public class EnemyBat : Enemy
     public override void Move() {
         List<Vector2Int> potentialPos = new List<Vector2Int> { Vector2Int.up, Vector2Int.left, Vector2Int.down, Vector2Int.right, Vector2Int.up + Vector2Int.left,
             Vector2Int.up + Vector2Int.right, Vector2Int.down + Vector2Int.left, Vector2Int.down + Vector2Int.right };
-        if (player.transform.localPosition.x < transform.localPosition.x - 0.5f) {
+        if (playerControler.thePlayer.transform.localPosition.x < transform.localPosition.x - 0.5f) {
             potentialPos.Add(Vector2Int.left);
             potentialPos.Add(Vector2Int.left * 2);
-        } else if (player.transform.localPosition.x > transform.localPosition.x + 0.5f) {
+        } else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
             potentialPos.Add(Vector2Int.right);
             potentialPos.Add(Vector2Int.right * 2);
         }
-        if (player.transform.localPosition.y < transform.localPosition.y - 0.5f) {
+        if (playerControler.thePlayer.transform.localPosition.y < transform.localPosition.y - 0.5f) {
             potentialPos.Add(Vector2Int.down);
             potentialPos.Add(Vector2Int.down * 2);
-        } else if (player.transform.localPosition.y > transform.localPosition.y + 0.5f) {
+        } else if (playerControler.thePlayer.transform.localPosition.y > transform.localPosition.y + 0.5f) {
             potentialPos.Add(Vector2Int.up);
             potentialPos.Add(Vector2Int.up * 2);
         }

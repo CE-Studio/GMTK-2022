@@ -17,8 +17,6 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer sprite;
 
     public Tilemap map;
-    public GameObject player;
-    public playerControler playerScript;
     public string[] traversable;
 
     public Sprite idle1;
@@ -34,9 +32,7 @@ public class Enemy : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         intendedPos = new Vector2Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y));
         map = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
-        player = GameObject.Find("Grid/player");
-        playerScript = player.GetComponent<playerControler>();
-        EnemyManager.enemies.Add(gameObject);
+        EnemyManager.enemies.Add(this);
     }
 
     void Update()
