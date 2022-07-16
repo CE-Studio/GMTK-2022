@@ -29,5 +29,6 @@ public class EnemyBlob : Enemy
             chosenPos = potentialPos[Random.Range(0, potentialPos.Count - 1)];
         }
         intendedPos = chosenPos;
+        sprite.flipX = intendedPos.x > transform.position.x;
     }
 }

@@ -112,5 +112,6 @@ public class DieManager:MonoBehaviour {
 
     public void endTurn() {
         setButtonState(true);
+        EnemyManager.MoveEnemies();
     }
 }

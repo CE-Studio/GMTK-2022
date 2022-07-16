@@ -125,5 +125,25 @@ MonoBehaviour:
   box: {fileID: 0}
   sprite: {fileID: 0}
   map: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  traversable:
+  - doorSingle_open
+  - doorRowLeft_open
+  - doorRowBody_open
+  - doorRowRight_open
+  - doorColumnTop_open
+  - doorLTopleft_open
+  - doorTDown_open
+  - doorLTopright_open
+  - doorColumnBody_open
+  - doorTRight_open
+  - doorCenter_open
+  - doorTLeft_open
+  - doorColumnBottom_open
+  - doorLBottomleft_open
+  - doorTUp_open
+  - doorLBottomright_open
   idle1: {fileID: 2192450021786810173, guid: 508b8f3a9df535942b8dde2bb1122b36, type: 3}
   idle2: {fileID: -7537196482120660328, guid: 508b8f3a9df535942b8dde2bb1122b36, type: 3}
+  intendedPos: {x: 0, y: 0}

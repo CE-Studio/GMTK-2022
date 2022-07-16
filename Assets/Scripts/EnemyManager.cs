@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyManager
 {
-    public static List<GameObject> enemies;
+    public static List<GameObject> enemies = new List<GameObject>();
 
     public static void MoveEnemies() {
         foreach (GameObject enemy in enemies) {
