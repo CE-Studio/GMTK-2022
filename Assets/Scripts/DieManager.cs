@@ -23,7 +23,7 @@ public class DieManager:MonoBehaviour {
 
     public Sprite[] spriteLib;
 
-    private readonly Vector2 dieSize = new Vector2(128, 128);
+    private Vector2 dieSize = new Vector2(128, 128);
     private const float LERP_VALUE = 15;
     private const float SPACE_BUFFER = 0;
 
@@ -31,6 +31,7 @@ public class DieManager:MonoBehaviour {
     private int lastDieRolled = 0; // 0 = move, 1 = turn, 2 = action
 
     public void Start() {
+        //dieSize = dieObj.GetComponent<RectTransform>().sizeDelta;
         queueBar = transform.GetChild(0).gameObject;
         queueImg = queueBar.GetComponent<Image>();
         queueRect = queueBar.GetComponent<RectTransform>();
