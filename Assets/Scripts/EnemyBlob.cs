@@ -13,20 +13,16 @@ public class EnemyBlob : Enemy
 {
     public override void Move() {
         List<Vector2Int> potentialPos = new List<Vector2Int>();
-        if (playerControler.thePlayer.transform.localPosition.x < transform.localPosition.x - 0.5f) {
-            potentialPos.Add(Vector2Int.left);
-            potentialPos.Add(Vector2Int.left * 2);
-        }
-        else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
-            potentialPos.Add(Vector2Int.right);
-            potentialPos.Add(Vector2Int.right * 2);
-        }
         if (playerControler.thePlayer.transform.localPosition.y < transform.localPosition.y - 0.5f) {
             potentialPos.Add(Vector2Int.down);
-            potentialPos.Add(Vector2Int.down * 2);
         } else if (playerControler.thePlayer.transform.localPosition.y > transform.localPosition.y + 0.5f) {
             potentialPos.Add(Vector2Int.up);
-            potentialPos.Add(Vector2Int.up * 2);
+        } else {
+            if (playerControler.thePlayer.transform.localPosition.x < transform.localPosition.x - 0.5f) {
+                potentialPos.Add(Vector2Int.left);
+            } else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
+                potentialPos.Add(Vector2Int.right);
+            }
         }
 
         int checkID = Random.Range(0, potentialPos.Count - 1);

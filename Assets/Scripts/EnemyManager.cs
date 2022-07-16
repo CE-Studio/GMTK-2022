@@ -11,4 +11,15 @@ public class EnemyManager
             enemy.Move();
         }
     }
+
+    public static bool getAt(Vector2Int pos, out Enemy result) {
+        foreach (Enemy i in enemies) {
+            if (Vector2Int.FloorToInt(i.transform.localPosition) == pos) {
+                result = i;
+                return true;
+            }
+        }
+        result = null;
+        return false;
+    }
 }
