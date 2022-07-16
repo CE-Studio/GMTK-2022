@@ -4,40 +4,40 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 5441223297315994465
-    second: Tileset_0
+    second: floor1
   - first:
       213: -3309781605116015348
-    second: Tileset_1
+    second: floor2
   - first:
       213: -6108889420429456849
-    second: Tileset_2
+    second: wallBody
   - first:
       213: 5682393469540925955
-    second: Tileset_3
+    second: wallEdge
   - first:
       213: 2403724249865808194
-    second: Tileset_4
+    second: pitEdge
   - first:
       213: 8040196581939011165
-    second: Tileset_5
+    second: shadowHoriz
   - first:
       213: -6056380807486736462
-    second: Tileset_6
+    second: shadowCornerInner
   - first:
       213: -8480404140891905064
-    second: Tileset_7
+    second: shadowVert
   - first:
       213: -72156938504300551
-    second: Tileset_8
+    second: shadowCornerOuter
   - first:
       213: 7769453424612927293
-    second: Tileset_9
+    second: shadowHorizEdge
   - first:
       213: -8025435653959805260
-    second: Tileset_10
+    second: pitBody
   - first:
       213: 4938342473259674171
-    second: Tileset_11
+    second: shadowVertEdge
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -175,7 +175,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tileset_0
+      name: floor1
       rect:
         serializedVersion: 2
         x: 1
@@ -196,7 +196,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_1
+      name: floor2
       rect:
         serializedVersion: 2
         x: 131
@@ -217,7 +217,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_2
+      name: wallBody
       rect:
         serializedVersion: 2
         x: 261
@@ -238,7 +238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_3
+      name: wallEdge
       rect:
         serializedVersion: 2
         x: 391
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_4
+      name: pitEdge
       rect:
         serializedVersion: 2
         x: 521
@@ -280,7 +280,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_5
+      name: shadowHoriz
       rect:
         serializedVersion: 2
         x: 1
@@ -301,7 +301,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_6
+      name: shadowCornerInner
       rect:
         serializedVersion: 2
         x: 131
@@ -322,7 +322,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_7
+      name: shadowVert
       rect:
         serializedVersion: 2
         x: 261
@@ -343,7 +343,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_8
+      name: shadowCornerOuter
       rect:
         serializedVersion: 2
         x: 391
@@ -364,7 +364,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_9
+      name: shadowHorizEdge
       rect:
         serializedVersion: 2
         x: 521
@@ -385,7 +385,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_10
+      name: pitBody
       rect:
         serializedVersion: 2
         x: 651
@@ -406,7 +406,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tileset_11
+      name: shadowVertEdge
       rect:
         serializedVersion: 2
         x: 651
