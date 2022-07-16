@@ -25,7 +25,7 @@ public class DieManager:MonoBehaviour {
 
     private readonly Vector2 dieSize = new Vector2(128, 128);
     private const float LERP_VALUE = 15;
-    private const float SPACE_BUFFER = 32;
+    private const float SPACE_BUFFER = 0;
 
     private int managerState = 0; // 0 = waiting, 1 = rolling
     private int lastDieRolled = 0; // 0 = move, 1 = turn, 2 = action
@@ -64,8 +64,7 @@ public class DieManager:MonoBehaviour {
     }
 
     public void AddDie(Vector2 data) {
-        GameObject newDieObj = Instantiate(dieObj);
-        newDieObj.transform.SetParent(transform);
+        GameObject newDieObj = Instantiate(dieObj, transform, false);
         Die newDie = new Die { dieObj = newDieObj, dieData = data };
         newDie.dieRect = newDie.dieObj.GetComponent<RectTransform>();
         newDie.dieImg = newDie.dieObj.GetComponent<Image>();
