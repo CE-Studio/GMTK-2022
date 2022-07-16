@@ -30,14 +30,14 @@ public class EnemyBlob : Enemy
         }
 
         int checkID = Random.Range(0, potentialPos.Count - 1);
-        Vector2Int chosenPos = potentialPos[checkID];
+        Vector2Int chosenPos = potentialPos.Count > 0 ? potentialPos[checkID] : Vector2Int.zero;
         while (!CheckAllTilesBetween(chosenPos) && potentialPos.Count > 0) {
             potentialPos.RemoveAt(checkID);
             if (potentialPos.Count > 0) {
                 checkID = Random.Range(0, potentialPos.Count - 1);
                 chosenPos = potentialPos[checkID];
             } else
-                chosenPos = Vector2Int.FloorToInt(transform.localPosition);
+                chosenPos = Vector2Int.zero;
         }
         intendedPos = Vector2Int.FloorToInt(transform.localPosition) + chosenPos;
         sprite.flipX = intendedPos.x > transform.localPosition.x;
