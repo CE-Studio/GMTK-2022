@@ -95,6 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2683a6ef3113545aeeb1114597c2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playarea: {fileID: 0}
+  traversable:
+  - Tileset_0
+  - Tileset_1
   sprites:
   - sprites:
     - {fileID: -2311659948842064771, guid: 8135d18fb36cd994c9ed93f7fb12c61f, type: 3}
