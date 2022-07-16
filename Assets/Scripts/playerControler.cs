@@ -71,6 +71,7 @@ public class playerControler : MonoBehaviour {
             }
             manager.RemoveFrontDie();
         }
+        manager.endTurn();
     }
 
     void walk() {

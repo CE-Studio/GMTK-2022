@@ -2861,6 +2861,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dieRoller: {fileID: 33498702}
   player: {fileID: 1329830188}
+  buttons:
+  - {fileID: 1975022007}
+  - {fileID: 55796373}
+  - {fileID: 971154251}
+  - {fileID: 2133476351}
   maxRolls: 10
   spriteLib:
   - {fileID: 117070855636090705, guid: 14ffe0715cac3914092611150d3aac38, type: 3}

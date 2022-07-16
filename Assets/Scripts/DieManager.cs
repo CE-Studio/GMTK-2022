@@ -7,6 +7,8 @@ public class DieManager:MonoBehaviour {
     public physdieController dieRoller;
     public playerControler player;
 
+    public Button[] buttons;
+
     GameObject queueBar;
     Image queueImg;
     RectTransform queueRect;
@@ -31,6 +33,7 @@ public class DieManager:MonoBehaviour {
     private int lastDieRolled = 0; // 0 = move, 1 = turn, 2 = action
 
     public void Start() {
+        setButtonState(true);
         queueBar = transform.GetChild(0).gameObject;
         queueImg = queueBar.GetComponent<Image>();
         queueRect = queueBar.GetComponent<RectTransform>();
@@ -55,6 +58,13 @@ public class DieManager:MonoBehaviour {
             int dieData = lastDieRolled == 1 ? dieRoller.curside switch { 1 => 1, 2 => 1, 3 => 2, 4 => 2, 5 => 2, _ => 1 } : dieRoller.curside;
             AddDie(new Vector2Int(lastDieRolled, dieData));
             managerState = 0;
+            setButtonState(true);
+        }
+    }
+
+    void setButtonState(bool clickable) {
+        foreach (Button i in buttons) {
+            i.interactable = clickable;
         }
     }
 
@@ -63,6 +73,7 @@ public class DieManager:MonoBehaviour {
             dieRoller.roll(mode);
             managerState = 1;
             lastDieRolled = mode;
+            setButtonState(false);
         }
     }
 
@@ -77,8 +88,10 @@ public class DieManager:MonoBehaviour {
     }
 
     public void RemoveFrontDie() {
-        Destroy(dice[0].dieObj);
-        dice.RemoveAt(0);
+        if (dice.Count > 0) {
+            Destroy(dice[0].dieObj);
+            dice.RemoveAt(0);
+        }
     }
 
     private Sprite GetSprite(Vector2Int data) {
@@ -91,5 +104,10 @@ public class DieManager:MonoBehaviour {
 
     public void beginTurn() {
         player.startMove(dice.ToArray());
+        setButtonState(false);
+    }
+
+    public void endTurn() {
+        setButtonState(true);
     }
 }
