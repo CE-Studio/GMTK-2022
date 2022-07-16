@@ -108,11 +108,18 @@ public class DieManager:MonoBehaviour {
             setButtonState(false);
         } else {
             EnemyManager.MoveEnemies();
+            StartCoroutine(wait());
         }
     }
 
     public void endTurn() {
         setButtonState(true);
         EnemyManager.MoveEnemies();
+    }
+
+    private IEnumerator wait() {
+        setButtonState(false);
+        yield return new WaitForSeconds(0.25f);
+        setButtonState(true);
     }
 }

@@ -13,14 +13,14 @@ public class EnemyBlob : Enemy
 {
     public override void Move() {
         List<Vector2Int> potentialPos = new List<Vector2Int>();
-        if (playerControler.thePlayer.transform.localPosition.y < transform.localPosition.y - 0.5f) {
+        if (playerControler.thePlayer.transform.localPosition.y < intendedPos.y) {
             potentialPos.Add(Vector2Int.down);
-        } else if (playerControler.thePlayer.transform.localPosition.y > transform.localPosition.y + 0.5f) {
+        } else if (playerControler.thePlayer.transform.localPosition.y > intendedPos.y + 1) {
             potentialPos.Add(Vector2Int.up);
         } else {
-            if (playerControler.thePlayer.transform.localPosition.x < transform.localPosition.x - 0.5f) {
+            if (playerControler.thePlayer.transform.localPosition.x < intendedPos.x) {
                 potentialPos.Add(Vector2Int.left);
-            } else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
+            } else if (playerControler.thePlayer.transform.localPosition.x > intendedPos.x + 1) {
                 potentialPos.Add(Vector2Int.right);
             }
         }

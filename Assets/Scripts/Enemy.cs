@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     {
         box = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        intendedPos = new Vector2Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y));
+        intendedPos = Vector2Int.FloorToInt(transform.localPosition);
         map = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
         EnemyManager.enemies.Add(this);
         timerMax = UnityEngine.Random.Range(0.5f, 1.5f);
@@ -56,13 +56,13 @@ public class Enemy : MonoBehaviour
         Tile tile = map.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
         if (tile == null)
             return true;
-        Debug.Log(tile.name);
+        //Debug.Log(tile.name);
         boxControler temp;
         Enemy temp2;
         return Array.IndexOf(traversable, tile.name) > -1 || boxManager.getAt(pos, out temp) || EnemyManager.getAt(pos, out temp2);
     }
     public bool isLocallyTraversable(Vector2Int pos) {
-        Debug.Log("Attempting to move to (" + (Mathf.FloorToInt(intendedPos.x) + pos.x) + ", " + (Mathf.FloorToInt(intendedPos.y) + pos.y) + ")");
+        //Debug.Log("Attempting to move to (" + (Mathf.FloorToInt(intendedPos.x) + pos.x) + ", " + (Mathf.FloorToInt(intendedPos.y) + pos.y) + ")");
         Vector2Int h = Vector2Int.FloorToInt(intendedPos) + pos;
         return isTraversable(h);
     }
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
             blocked = blocked == true || isTraversable(checkPos);
             checkPos += normalizedDir;
         }
-        Debug.Log("(" + posRelative.x + ", " + posRelative.y + "), " + iterationCount + ", " + blocked);
+        //Debug.Log("(" + posRelative.x + ", " + posRelative.y + "), " + iterationCount + ", " + blocked);
         return blocked;
     }
 
