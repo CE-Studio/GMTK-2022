@@ -12,6 +12,8 @@ public class playerControler : MonoBehaviour {
     public DieManager manager;
     public GameObject pathArrowPrefab;
 
+    public static playerControler thePlayer;
+
     [Serializable]
     public struct spritelist {
         public Sprite[] sprites;
@@ -23,6 +25,7 @@ public class playerControler : MonoBehaviour {
 
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
+        thePlayer = this;
     }
 
     void Update() {
