@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DieManager:MonoBehaviour {
     public physdieController dieRoller;
+    public playerControler player;
 
     GameObject queueBar;
     Image queueImg;
@@ -81,5 +82,9 @@ public class DieManager:MonoBehaviour {
             1 => data.y switch { 1 => 7, _ => 6 },
             _ => data.y switch { 1 => 9, 2 => 11, 3 => 12, 4 => 13, 5 => 10, _ => 8 }
         }];
+    }
+
+    public void beginTurn() {
+        player.startMove(dice.ToArray());
     }
 }

@@ -53,19 +53,19 @@ public class playerControler : MonoBehaviour {
             switch (i.dieData.x) {
                 default:
                     int h = i.dieData.y;
-                    while (h > 1) {
+                    while (h > 0) {
                         walk();
                         h -= 1;
-                        yield return new WaitForSeconds(1);
+                        yield return new WaitForSeconds(0.25f);
                     }
                     break;
                 case 1:
                     turn(i.dieData.y == 2);
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.25f);
                     break;
                 case 2:
                     action(i.dieData.y);
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(0.25f);
                     break;
             }
         }
