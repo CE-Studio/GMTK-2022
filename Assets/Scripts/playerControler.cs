@@ -9,6 +9,7 @@ public class playerControler : MonoBehaviour {
     public SpriteRenderer sr;
     public Tilemap playarea;
     public string[] traversable;
+    public DieManager manager;
 
     [Serializable]
     public struct spritelist {
@@ -68,6 +69,7 @@ public class playerControler : MonoBehaviour {
                     yield return new WaitForSeconds(0.25f);
                     break;
             }
+            manager.RemoveFrontDie();
         }
     }
 

@@ -197,7 +197,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 0.49911577, b: 0.49411762, a: 1}
     m_HighlightedColor: {r: 1, g: 0.77859133, b: 0.7764706, a: 1}
     m_PressedColor: {r: 0.58431375, g: 0.34901962, b: 0.35357627, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 0.49803925, b: 0.49411768, a: 1}
     m_DisabledColor: {r: 0.48235294, g: 0, b: 0.01812568, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -322,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 5438447240466703899, guid: 0b6fabf218a121d41b116d22a52a37ab, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 1168736800}
     - target: {fileID: 5438447240466703899, guid: 0b6fabf218a121d41b116d22a52a37ab, type: 3}
       propertyPath: playarea
       value: 
@@ -2668,7 +2672,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.6208501, g: 1, b: 0.49411762, a: 1}
     m_HighlightedColor: {r: 0.82979184, g: 1, b: 0.7764706, a: 1}
     m_PressedColor: {r: 0.38379472, g: 0.58431375, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.61960787, g: 1, b: 0.49411768, a: 1}
     m_DisabledColor: {r: 0.09723871, g: 0.48235294, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -5038,7 +5042,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.4943396, g: 0.8421851, b: 1, a: 1}
     m_HighlightedColor: {r: 0.7773585, g: 0.9813617, b: 1, a: 1}
     m_PressedColor: {r: 0.34983978, g: 0.5398945, b: 0.5849056, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.49411768, g: 0.8431373, b: 1, a: 1}
     m_DisabledColor: {r: 0, g: 0.28130445, b: 0.4811321, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

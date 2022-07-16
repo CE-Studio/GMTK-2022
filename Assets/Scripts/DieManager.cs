@@ -76,6 +76,11 @@ public class DieManager:MonoBehaviour {
         dice.Add(newDie);
     }
 
+    public void RemoveFrontDie() {
+        Destroy(dice[0].dieObj);
+        dice.RemoveAt(0);
+    }
+
     private Sprite GetSprite(Vector2Int data) {
         return spriteLib[data.x switch {
             0 => data.y switch { 1 => 0, 2 => 1, 3 => 2, 4 => 3, 5 => 4, _ => 5 },
