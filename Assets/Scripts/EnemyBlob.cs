@@ -32,10 +32,13 @@ public class EnemyBlob : Enemy
 
         int checkID = Random.Range(0, potentialPos.Count - 1);
         Vector2Int chosenPos = potentialPos[checkID];
-        while (!CheckAllTilesBetween(chosenPos)) {
+        while (!CheckAllTilesBetween(chosenPos) && potentialPos.Count > 0) {
             potentialPos.RemoveAt(checkID);
-            checkID = Random.Range(0, potentialPos.Count - 1);
-            chosenPos = potentialPos[checkID];
+            if (potentialPos.Count > 0) {
+                checkID = Random.Range(0, potentialPos.Count - 1);
+                chosenPos = potentialPos[checkID];
+            } else
+                chosenPos = Vector2Int.FloorToInt(transform.localPosition);
         }
         intendedPos = Vector2Int.FloorToInt(transform.localPosition) + chosenPos;
         sprite.flipX = intendedPos.x > transform.localPosition.x;
