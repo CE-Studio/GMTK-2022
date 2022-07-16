@@ -14,7 +14,7 @@ public class EnemyManager
 
     public static bool getAt(Vector2Int pos, out Enemy result) {
         foreach (Enemy i in enemies) {
-            if (Vector2Int.FloorToInt(i.transform.localPosition) == pos) {
+            if (Vector2Int.FloorToInt(i.intendedPos) == pos) {
                 result = i;
                 return true;
             }
