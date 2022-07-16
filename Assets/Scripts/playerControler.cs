@@ -23,7 +23,6 @@ public class playerControler : MonoBehaviour {
 
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
-        print(isTraversable(Vector2Int.zero));
     }
 
     void Update() {
