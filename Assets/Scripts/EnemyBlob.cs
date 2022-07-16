@@ -30,11 +30,14 @@ public class EnemyBlob : Enemy
             potentialPos.Add(Vector2Int.up * 2);
         }
 
-        Vector2Int chosenPos = potentialPos[Random.Range(0, potentialPos.Count - 1)];
-        while (!IsTraversible(Vector2Int.FloorToInt(transform.localPosition) + chosenPos)) {
-            chosenPos = potentialPos[Random.Range(0, potentialPos.Count - 1)];
+        int checkID = Random.Range(0, potentialPos.Count - 1);
+        Vector2Int chosenPos = potentialPos[checkID];
+        while (!CheckAllTilesBetween(chosenPos)) {
+            potentialPos.RemoveAt(checkID);
+            checkID = Random.Range(0, potentialPos.Count - 1);
+            chosenPos = potentialPos[checkID];
         }
-        intendedPos = chosenPos;
+        intendedPos = Vector2Int.FloorToInt(transform.localPosition) + chosenPos;
         sprite.flipX = intendedPos.x > transform.localPosition.x;
     }
 }

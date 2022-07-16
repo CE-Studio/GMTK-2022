@@ -56,4 +56,16 @@ public class Enemy : MonoBehaviour
         Tile tile = map.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
         return tile == null || Array.IndexOf(traversable, tile.name) > -1;
     }
+
+    public bool CheckAllTilesBetween(Vector2Int posRelative) {
+        int iterationCount = posRelative.x == 0 ? Mathf.Abs(posRelative.y) : Mathf.Abs(posRelative.x);
+        Vector2Int normalizedDir = new Vector2Int(posRelative.x > 0 ? 1 : (posRelative.x < 0 ? -1 : 0), posRelative.y > 0 ? 1 : (posRelative.y < 0 ? -1 : 0));
+        Vector2Int checkPos = Vector2Int.FloorToInt(transform.localPosition) + normalizedDir;
+        bool blocked = false;
+        for (int i = 0; i < iterationCount; i++) {
+            blocked = blocked == true || IsTraversible(checkPos);
+            checkPos += normalizedDir;
+        }
+        return blocked;
+    }
 }
