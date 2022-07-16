@@ -97,8 +97,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playarea: {fileID: 0}
   traversable:
-  - Tileset_0
-  - Tileset_1
+  - doorSingle_open
+  - doorRowLeft_open
+  - doorRowBody_open
+  - doorRowRight_open
+  - doorColumnTop_open
+  - doorLTopleft_open
+  - doorTDown_open
+  - doorLTopright_open
+  - doorColumnBody_open
+  - doorTRight_open
+  - doorCenter_open
+  - doorTLeft_open
+  - doorColumnBottom_open
+  - doorLBottomleft_open
+  - doorTUp_open
+  - doorLBottomright_open
   sprites:
   - sprites:
     - {fileID: -2311659948842064771, guid: 8135d18fb36cd994c9ed93f7fb12c61f, type: 3}
