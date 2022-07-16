@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2c2e7a28db4a2864b83c64d5125453fa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - box: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  - map: {instanceID: 0}
+  - idle1: {fileID: 2192450021786810173, guid: 508b8f3a9df535942b8dde2bb1122b36, type: 3}
+  - idle2: {fileID: -7537196482120660328, guid: 508b8f3a9df535942b8dde2bb1122b36, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
