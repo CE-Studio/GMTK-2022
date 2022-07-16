@@ -51,7 +51,8 @@ public class DieManager:MonoBehaviour {
         }
 
         if (managerState == 1 && !dieRoller.isRolling()) {
-            AddDie(new Vector2Int(lastDieRolled, dieRoller.curside));
+            int dieData = lastDieRolled == 1 ? dieRoller.curside switch { 1 => 1, 2 => 1, 3 => 2, 4 => 2, 5 => 2, _ => 1 } : dieRoller.curside;
+            AddDie(new Vector2Int(lastDieRolled, dieData));
             managerState = 0;
         }
     }
@@ -77,7 +78,7 @@ public class DieManager:MonoBehaviour {
     private Sprite GetSprite(Vector2Int data) {
         return spriteLib[data.x switch {
             0 => data.y switch { 1 => 0, 2 => 1, 3 => 2, 4 => 3, 5 => 4, _ => 5 },
-            1 => data.y switch { 1 => 7, 2 => 7, 3 => 6, 4 => 6, 5 => 6, _ => 7 },
+            1 => data.y switch { 1 => 7, _ => 6 },
             _ => data.y switch { 1 => 9, 2 => 11, 3 => 12, 4 => 13, 5 => 10, _ => 8 }
         }];
     }
