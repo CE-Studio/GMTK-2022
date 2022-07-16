@@ -116,6 +116,12 @@ MonoBehaviour:
   - door16_open
   manager: {fileID: 0}
   pathArrowPrefab: {fileID: 7128718542072344075, guid: 30f9974d73a3beb46bf5f6982f39b46c, type: 3}
+  weapon: {fileID: 7492317916918552864, guid: d4a6e02376a12324c8bf4e2db5daa3f2, type: 3}
+  weaponSprites:
+  - {fileID: 5601323976189978565, guid: 2174517a9e19ce24da75378e23c3aff3, type: 3}
+  - {fileID: -761887118410055393, guid: 2174517a9e19ce24da75378e23c3aff3, type: 3}
+  - {fileID: 9147546874185701050, guid: 2174517a9e19ce24da75378e23c3aff3, type: 3}
+  - {fileID: -8951780388439148649, guid: 2174517a9e19ce24da75378e23c3aff3, type: 3}
   sprites:
   - sprites:
     - {fileID: -2311659948842064771, guid: 8135d18fb36cd994c9ed93f7fb12c61f, type: 3}

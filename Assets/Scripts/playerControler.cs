@@ -11,6 +11,8 @@ public class playerControler : MonoBehaviour {
     public string[] traversable;
     public DieManager manager;
     public GameObject pathArrowPrefab;
+    public GameObject weapon;
+    public Sprite[] weaponSprites;
 
     public static playerControler thePlayer;
 
@@ -20,8 +22,8 @@ public class playerControler : MonoBehaviour {
     }
 
     public spritelist[] sprites;
-    public int dir = 0;
-    public int mode = 0;
+    public int dir = 0;  // 0 = down, 1 = left, 2 = up, 3 = right
+    public int mode = 0; // 1 = normal, 2 = carrying box, 3 = attacking
 
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
@@ -78,7 +80,7 @@ public class playerControler : MonoBehaviour {
                     break;
                 case 2:
                     action(i.dieData.y);
-                    yield return new WaitForSeconds(0.25f);
+                    yield return new WaitForSeconds(i.dieData.y switch { 1 => 0.5f, 2 => 0.75f, 5 => 1f, _ => 0.25f });
                     break;
             }
             manager.RemoveFrontDie();
@@ -146,6 +148,84 @@ public class playerControler : MonoBehaviour {
             case 6:
                 break;
         }
+        updateSprite();
+    }
+
+    IEnumerator stabOneAnim() {
+        int tempMode = mode;
+        mode = 2;
+        updateSprite();
+        Vector2 currentDir = dir switch { 0 => Vector2.down, 1 => Vector2.left, 2 => Vector2.up, _ => Vector2.right };
+        GameObject sword = Instantiate(weapon, transform);
+        sword.transform.Rotate(new Vector3(0, 0, dir * -90));
+        sword.transform.localPosition = Vector2.zero + (currentDir * 0.5f);
+        float animTimer = 0;
+        while (animTimer < 0.5f) {
+            sword.transform.localPosition = Vector2.zero + (currentDir * Mathf.Sin(animTimer * 5f));
+            animTimer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(sword);
+        mode = tempMode;
+        updateSprite();
+    }
+
+    IEnumerator stabLineAnim() {
+        int tempMode = mode;
+        mode = 2;
+        updateSprite();
+        Vector2 currentDir = dir switch { 0 => Vector2.down, 1 => Vector2.left, 2 => Vector2.up, _ => Vector2.right };
+        GameObject bow = Instantiate(weapon, transform);
+        GameObject arrow = Instantiate(weapon, transform);
+        SpriteRenderer bowSprite = bow.GetComponent<SpriteRenderer>();
+        SpriteRenderer arrowSprite = arrow.GetComponent<SpriteRenderer>();
+        bowSprite.sprite = weaponSprites[3];
+        arrowSprite.sprite = weaponSprites[1];
+        bow.transform.Rotate(new Vector3(0, 0, dir * -90));
+        arrow.transform.Rotate(new Vector3(0, 0, dir * -90));
+        bow.transform.localPosition = Vector2.zero + currentDir;
+        arrow.transform.localPosition = Vector2.zero + currentDir * 1.25f;
+        bool phase = false;
+        float animTimer = 0;
+        while (animTimer < 0.75f) {
+            if (animTimer < 0.5f)
+                arrow.transform.localPosition = Vector2.zero + currentDir * (1.25f - (animTimer * 0.5f));
+            else {
+                if (!phase) {
+                    bowSprite.sprite = weaponSprites[2];
+                    arrow.transform.localPosition = Vector2.zero + currentDir * Mathf.Lerp(1, 5, (animTimer - 0.5f) * 4);
+                }
+            }
+            animTimer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(bow);
+        Destroy(arrow);
+        mode = tempMode;
+        updateSprite();
+    }
+
+    IEnumerator stabSwooshAnim() {
+        int tempMode = mode;
+        mode = 2;
+        updateSprite();
+        Vector2 currentDir = dir switch { 0 => Vector2.down, 1 => Vector2.left, 2 => Vector2.up, _ => Vector2.right };
+        GameObject sword = Instantiate(weapon, transform);
+        float initialRotation = dir * -90;
+        sword.transform.Rotate(new Vector3(0, 0, dir * -90));
+        sword.transform.localPosition = Vector2.zero + currentDir;
+        float animTimer = 0;
+        while (animTimer < 1) {
+            //sword.transform.localPosition = Vector2.zero + (currentDir * Mathf.Sin(animTimer * 5f));
+            //sword.transform.RotateAround(transform.localPosition, Vector3.up, Mathf.Pow(Mathf.Abs(animTimer - 1) * 2, 2) * 0.5f);
+            //sword.transform.localPosition = (transform.localPosition - sword.transform.localPosition).normalized;
+            sword.transform.localRotation = Quaternion.Euler(0, 0, initialRotation + Mathf.Lerp(0, 360, animTimer));
+            sword.transform.localPosition = new Vector2(Mathf.Sin(currentDir.x * animTimer * (Mathf.PI * 2)), Mathf.Cos(currentDir.y * animTimer * (Mathf.PI * 2)));
+            animTimer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(sword);
+        mode = tempMode;
         updateSprite();
     }
 
@@ -285,6 +365,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabOne() {
+        StartCoroutine(stabOneAnim());
         switch (dir) {
             case 0:
                 stabLocally(Vector2Int.down);
@@ -302,6 +383,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabLine() {
+        StartCoroutine(stabLineAnim());
         for (int i = 1; i < 6; i++) {
             switch (dir) {
                 case 0:
@@ -321,6 +403,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabSwoosh() {
+        StartCoroutine(stabSwooshAnim());
         stabLocally(new Vector2Int(0, -1));
         stabLocally(new Vector2Int(-1, -1));
         stabLocally(new Vector2Int(-1, 0));
