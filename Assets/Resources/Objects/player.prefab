@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2683a6ef3113545aeeb1114597c2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 4867038974204500527}
   playarea: {fileID: 0}
   traversable:
   - doorSingle_open
