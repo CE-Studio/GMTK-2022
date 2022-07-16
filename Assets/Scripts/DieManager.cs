@@ -106,6 +106,8 @@ public class DieManager:MonoBehaviour {
         if (dice.Count > 0) {
             playerControler.thePlayer.startMove(dice.ToArray());
             setButtonState(false);
+        } else {
+            EnemyManager.MoveEnemies();
         }
     }
 
