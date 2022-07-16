@@ -11,13 +11,12 @@ public class DieManager:MonoBehaviour {
     RectTransform queueRect;
 
     public int maxRolls = 3;
-    public List<Vector2> currentQueue = new List<Vector2>();
     GameObject dieObj;
     public struct Die {
         public GameObject dieObj;
         public Image dieImg;
         public RectTransform dieRect;
-        public Vector2 dieData; // X = die type (move, turn, action); Y = data (how far to go, where to turn, what to do)
+        public Vector2Int dieData; // X = die type (move, turn, action); Y = data (how far to go, where to turn, what to do)
     };
     public List<Die> dice = new List<Die>();
 
@@ -52,7 +51,7 @@ public class DieManager:MonoBehaviour {
         }
 
         if (managerState == 1 && !dieRoller.isRolling()) {
-            AddDie(new Vector2(lastDieRolled, dieRoller.curside));
+            AddDie(new Vector2Int(lastDieRolled, dieRoller.curside));
             managerState = 0;
         }
     }
@@ -65,7 +64,7 @@ public class DieManager:MonoBehaviour {
         }
     }
 
-    public void AddDie(Vector2 data) {
+    public void AddDie(Vector2Int data) {
         GameObject newDieObj = Instantiate(dieObj, transform, false);
         Die newDie = new Die { dieObj = newDieObj, dieData = data };
         newDie.dieRect = newDie.dieObj.GetComponent<RectTransform>();
@@ -75,7 +74,7 @@ public class DieManager:MonoBehaviour {
         dice.Add(newDie);
     }
 
-    private Sprite GetSprite(Vector2 data) {
+    private Sprite GetSprite(Vector2Int data) {
         return spriteLib[data.x switch {
             0 => data.y switch { 1 => 0, 2 => 1, 3 => 2, 4 => 3, 5 => 4, _ => 5 },
             1 => data.y switch { 1 => 7, 2 => 7, 3 => 6, 4 => 6, 5 => 6, _ => 7 },
