@@ -39,7 +39,7 @@ public class playerControler : MonoBehaviour {
 
     bool isTraversable(Vector2Int pos) {
         boxControler i;
-        if (boxManager.bm.getAt(pos, out i))
+        if (boxManager.getAt(pos, out i))
             return false;
         Tile tile = playarea.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
         if (tile == null) return true;
@@ -147,19 +147,19 @@ public class playerControler : MonoBehaviour {
         if (mode != 1) {
             switch (dir) {
                 case 0:
-                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down))
                         mode = 1;
                     break;
                 case 1:
-                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left))
                         mode = 1;
                     break;
                 case 2:
-                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up))
                         mode = 1;
                     break;
                 case 3:
-                    if (boxManager.bm.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right))
                         mode = 1;
                     break;
             }
