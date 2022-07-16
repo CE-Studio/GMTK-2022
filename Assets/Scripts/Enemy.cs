@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         intendedPos = new Vector2Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y));
         map = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
         EnemyManager.enemies.Add(this);
+        sprite.flipX = UnityEngine.Random.Range(0, 2) == 1;
     }
 
     void Update()

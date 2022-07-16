@@ -1,32 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-// #   #  #### #####    #      ###   ####  ###  #        ####   ###   ####
-// #   # #     #        #     #   # #     #   # #        #   # #   # #    
-// #   #  ###  ###      #     #   # #     ##### #        #   # #   #  ### 
-// #   #     # #        #     #   # #     #   # #        ####  #   #     #
-//  ###  ####  #####    #####  ###   #### #   # #####    #      ###  #### 
-
-public class EnemyBlob : Enemy
+public class EnemySnake : Enemy
 {
     public override void Move() {
         List<Vector2Int> potentialPos = new List<Vector2Int>();
         if (playerControler.thePlayer.transform.localPosition.x < transform.localPosition.x - 0.5f) {
-            potentialPos.Add(Vector2Int.left);
             potentialPos.Add(Vector2Int.left * 2);
-        }
-        else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
-            potentialPos.Add(Vector2Int.right);
+            potentialPos.Add(Vector2Int.left * 3);
+            potentialPos.Add(Vector2Int.left * 4);
+        } else if (playerControler.thePlayer.transform.localPosition.x > transform.localPosition.x + 0.5f) {
             potentialPos.Add(Vector2Int.right * 2);
+            potentialPos.Add(Vector2Int.right * 3);
+            potentialPos.Add(Vector2Int.right * 4);
         }
         if (playerControler.thePlayer.transform.localPosition.y < transform.localPosition.y - 0.5f) {
-            potentialPos.Add(Vector2Int.down);
             potentialPos.Add(Vector2Int.down * 2);
+            potentialPos.Add(Vector2Int.down * 3);
+            potentialPos.Add(Vector2Int.down * 4);
         } else if (playerControler.thePlayer.transform.localPosition.y > transform.localPosition.y + 0.5f) {
-            potentialPos.Add(Vector2Int.up);
             potentialPos.Add(Vector2Int.up * 2);
+            potentialPos.Add(Vector2Int.up * 3);
+            potentialPos.Add(Vector2Int.up * 4);
         }
 
         int checkID = Random.Range(0, potentialPos.Count - 1);
