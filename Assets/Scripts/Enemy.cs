@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// #   #  #### #####    #      ###   ####  ###  #        ####   ###   ####
+// #   # #     #        #     #   # #     #   # #        #   # #   # #    
+// #   #  ###  ###      #     #   # #     ##### #        #   # #   #  ### 
+// #   #     # #        #     #   # #     #   # #        ####  #   #     #
+//  ###  ####  #####    #####  ###   #### #   # #####    #      ###  #### 
+
+
 public class Enemy : MonoBehaviour
 {
     public BoxCollider2D box;
@@ -25,7 +32,7 @@ public class Enemy : MonoBehaviour
     {
         box = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        intendedPos = new Vector2Int(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y));
+        intendedPos = new Vector2Int(Mathf.FloorToInt(transform.localPosition.x), Mathf.FloorToInt(transform.localPosition.y));
         map = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
         player = GameObject.Find("Grid/player");
         playerScript = player.GetComponent<playerControler>();
@@ -37,8 +44,8 @@ public class Enemy : MonoBehaviour
         animTimer = (animTimer + Time.deltaTime) % 1;
         sprite.sprite = animTimer < 0.5f ? idle1 : idle2;
 
-        transform.position = Vector2.Lerp(transform.position, new Vector2(intendedPos.x + 0.5f, intendedPos.y + 0.5f), LERP_VALUE * Time.deltaTime);
-        box.offset = new Vector2(transform.position.x - (intendedPos.x + 0.5f), transform.position.y - (intendedPos.y + 0.5f));
+        transform.localPosition = Vector2.Lerp(transform.localPosition, new Vector2(intendedPos.x + 0.5f, intendedPos.y + 0.5f), LERP_VALUE * Time.deltaTime);
+        box.offset = new Vector2(transform.localPosition.x - (intendedPos.x + 0.5f), transform.localPosition.y - (intendedPos.y + 0.5f));
     }
 
     public virtual void Move() {
