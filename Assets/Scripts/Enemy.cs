@@ -52,9 +52,21 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public bool IsTraversible(Vector2Int pos) {
+    public bool isTraversable(Vector2Int pos) {
         Tile tile = map.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
-        return tile == null || Array.IndexOf(traversable, tile.name) > -1;
+        if (tile == null)
+            return true;
+        Debug.Log(tile.name);
+        return Array.IndexOf(traversable, tile.name) > -1;
+    }
+    public bool isLocallyTraversable(Vector2Int pos) {
+        Debug.Log("Attempting to move to (" + (Mathf.FloorToInt(intendedPos.x) + pos.x) + ", " + (Mathf.FloorToInt(intendedPos.y) + pos.y) + ")");
+        Vector2Int h = Vector2Int.FloorToInt(intendedPos) + pos;
+        return isTraversable(h);
+    }
+
+    public void moveLocally(Vector2Int pos) {
+        intendedPos += new Vector2Int(pos.x, pos.y);
     }
 
     public bool CheckAllTilesBetween(Vector2Int posRelative) {
@@ -63,7 +75,7 @@ public class Enemy : MonoBehaviour
         Vector2Int checkPos = Vector2Int.FloorToInt(transform.localPosition) + normalizedDir;
         bool blocked = false;
         for (int i = 0; i < iterationCount; i++) {
-            blocked = blocked == true || IsTraversible(checkPos);
+            blocked = blocked == true || isTraversable(checkPos);
             checkPos += normalizedDir;
         }
         Debug.Log("(" + posRelative.x + ", " + posRelative.y + "), " + iterationCount + ", " + blocked);
