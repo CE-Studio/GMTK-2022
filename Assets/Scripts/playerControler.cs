@@ -10,6 +10,7 @@ public class playerControler : MonoBehaviour {
     public Tilemap playarea;
     public string[] traversable;
     public DieManager manager;
+    public GameObject pathArrowPrefab;
 
     [Serializable]
     public struct spritelist {
@@ -46,6 +47,9 @@ public class playerControler : MonoBehaviour {
     }
 
     public void startMove(DieManager.Die[] instructions) {
+        foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
         StartCoroutine(move(instructions));
     }
 
@@ -116,5 +120,78 @@ public class playerControler : MonoBehaviour {
 
     void action(int actmode) { 
     
+    }
+
+    public void visualizePath(DieManager.Die[] instructions) {
+        foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+        int px = 0;
+        int py = 0;
+        int pr = dir;
+        GameObject na = Instantiate(pathArrowPrefab, transform, false);
+        na.transform.localPosition = new Vector3(px, py, 0);
+        na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+        foreach (DieManager.Die i in instructions) {
+            switch (i.dieData.x) {
+                default:
+                    int h = i.dieData.y;
+                    while (h > 0) {
+                        switch (pr) {
+                            case 0:
+                                if (isLocallyTraversable(new Vector2Int(px, py - 1))) {
+                                    py -= 1;
+                                    na = Instantiate(pathArrowPrefab, transform, false);
+                                    na.transform.localPosition = new Vector3(px, py, 0);
+                                    na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+                                }
+                                break;
+                            case 1:
+                                if (isLocallyTraversable(new Vector2Int(px - 1, py))) {
+                                    px -= 1;
+                                    na = Instantiate(pathArrowPrefab, transform, false);
+                                    na.transform.localPosition = new Vector3(px, py, 0);
+                                    na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+                                }
+                                break;
+                            case 2:
+                                if (isLocallyTraversable(new Vector2Int(px, py + 1))) {
+                                    py += 1;
+                                    na = Instantiate(pathArrowPrefab, transform, false);
+                                    na.transform.localPosition = new Vector3(px, py, 0);
+                                    na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+                                }
+                                break;
+                            case 3:
+                                if (isLocallyTraversable(new Vector2Int(px + 1, py))) {
+                                    px += 1;
+                                    na = Instantiate(pathArrowPrefab, transform, false);
+                                    na.transform.localPosition = new Vector3(px, py, 0);
+                                    na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+                                }
+                                break;
+                        }
+                        h -= 1;
+                    }
+                    break;
+                case 1:
+                    bool cw = i.dieData.y == 2;
+                    if (cw) {
+                        pr += 1;
+                    } else {
+                        pr -= 1;
+                    }
+                    if (pr > 3) {
+                        pr = 0;
+                    }
+                    if (pr < 0) {
+                        pr = 3;
+                    }
+                    na.transform.localEulerAngles = new Vector3(0, 0, pr * -90);
+                    break;
+                case 2:
+                    break;
+            }
+        }
     }
 }

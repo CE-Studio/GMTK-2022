@@ -114,6 +114,8 @@ MonoBehaviour:
   - doorLBottomleft_open
   - doorTUp_open
   - doorLBottomright_open
+  manager: {fileID: 0}
+  pathArrowPrefab: {fileID: 7128718542072344075, guid: 30f9974d73a3beb46bf5f6982f39b46c, type: 3}
   sprites:
   - sprites:
     - {fileID: -2311659948842064771, guid: 8135d18fb36cd994c9ed93f7fb12c61f, type: 3}

@@ -85,6 +85,7 @@ public class DieManager:MonoBehaviour {
         newDie.dieImg.sprite = GetSprite(data);
         newDie.dieRect.localPosition = new Vector2(queueRect.localPosition.x, queueRect.localPosition.y + 512);
         dice.Add(newDie);
+        player.visualizePath(dice.ToArray());
     }
 
     public void RemoveFrontDie() {
@@ -103,8 +104,10 @@ public class DieManager:MonoBehaviour {
     }
 
     public void beginTurn() {
-        player.startMove(dice.ToArray());
-        setButtonState(false);
+        if (dice.Count > 0) {
+            player.startMove(dice.ToArray());
+            setButtonState(false);
+        }
     }
 
     public void endTurn() {
