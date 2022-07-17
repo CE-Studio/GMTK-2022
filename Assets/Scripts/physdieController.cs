@@ -51,7 +51,6 @@ public class physdieController : MonoBehaviour {
             }
         }
         h += 1;
-        print(h);
         curside = h;
     }
 

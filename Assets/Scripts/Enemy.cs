@@ -77,7 +77,6 @@ public class Enemy : MonoBehaviour
             blocked = blocked == true || isTraversable(checkPos);
             checkPos += normalizedDir;
         }
-        //Debug.Log("(" + posRelative.x + ", " + posRelative.y + "), " + iterationCount + ", " + blocked);
         return blocked;
     }
 

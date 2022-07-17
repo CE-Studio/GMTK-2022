@@ -33,7 +33,6 @@ public class EnemyManager
     }
 
     public static void removeLevelDoors() {
-        Debug.Log("Searching for blue doors");
         Tilemap elementMap = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
         foreach (Vector3Int position in elementMap.cellBounds.allPositionsWithin) {
             if (!elementMap.HasTile(position))
