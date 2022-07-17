@@ -19,6 +19,7 @@ public class playerControler : MonoBehaviour {
 
     public List<Vector2Int> endLevelTiles = new List<Vector2Int>();
     private float deathTimer = 1;
+    private float endTimer = 1;
     public Scene thisLevel;
 
     [Serializable]
@@ -49,9 +50,15 @@ public class playerControler : MonoBehaviour {
         if (deathTimer <= 0)
            loadLevel(thisLevel.name);
 
-        if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition))) {
-            // End level code here
-            Debug.Log("ay you beat it yay");
+        if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition)) && endTimer == 1) {
+            endTimer -= Time.deltaTime;
+        }
+        if (endTimer != 1)
+            endTimer -= Time.deltaTime;
+        if (endTimer <= 0) {
+            string currentSceneName = thisLevel.name;
+            string newSceneName = currentSceneName.Substring(0, currentSceneName.Length - 1) + (int.Parse(currentSceneName.Substring(currentSceneName.Length - 1, 1)) + 1);
+            loadLevel(newSceneName);
         }
     }
 

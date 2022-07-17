@@ -55,15 +55,11 @@ public class Enemy : MonoBehaviour
 
     public bool isTraversable(Vector2Int pos) {
         Tile tile = map.GetTile<Tile>(new Vector3Int(pos.x, pos.y, 0));
-        if (tile == null)
-            return true;
-        //Debug.Log(tile.name);
         boxControler temp;
         Enemy temp2;
-        return Array.IndexOf(traversable, tile.name) > -1 && !boxManager.getAt(pos, out temp) && !EnemyManager.getAt(pos, out temp2);
+        return (tile == null ? true : Array.IndexOf(traversable, tile.name) > -1) && !boxManager.getAt(pos, out temp) && !EnemyManager.getAt(pos, out temp2);
     }
     public bool isLocallyTraversable(Vector2Int pos) {
-        //Debug.Log("Attempting to move to (" + (Mathf.FloorToInt(intendedPos.x) + pos.x) + ", " + (Mathf.FloorToInt(intendedPos.y) + pos.y) + ")");
         Vector2Int h = Vector2Int.FloorToInt(intendedPos) + pos;
         return isTraversable(h);
     }
