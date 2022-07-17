@@ -191,15 +191,15 @@ public class playerControler : MonoBehaviour {
                     print("Pressing!");
                     i.press();
                 break;
-            case 2:
+            case 1:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left, out i))
                     i.press();
                 break;
-            case 3:
+            case 2:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up, out i))
                     i.press();
                 break;
-            case 4:
+            case 3:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right, out i))
                     i.press();
                 break;
