@@ -10476,6 +10476,13 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[33].second.m_TileSpriteIndex
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8010304851466415950, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: m_Text
+      value: 'Buttons need to be held down by something to stay active.
+
+        Boxes
+        can be carried and used as walls or pressure.'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
 --- !u!4 &1548696987 stripped

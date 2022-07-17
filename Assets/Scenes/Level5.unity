@@ -6841,6 +6841,13 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[40].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 8010304851466415950, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: m_Text
+      value: 'There isn''t any one singular way to clear a level sometimes.
+
+        Be
+        creative.'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
 --- !u!4 &995955365 stripped
