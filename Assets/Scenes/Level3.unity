@@ -11838,7 +11838,7 @@ PrefabInstance:
 
         If
         you need to restart the level, press R, or press ESCAPE to return to the
-        main menu.'
+        main menu. Be careful; your progress will be lost.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
