@@ -29,6 +29,7 @@ public class playerControler : MonoBehaviour {
     public spritelist[] sprites;
     public int dir = 0;  // 0 = down, 1 = left, 2 = up, 3 = right
     public int mode = 0; // 1 = normal, 2 = carrying box, 3 = attacking
+    private int tempMode = 0;
 
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
@@ -206,7 +207,6 @@ public class playerControler : MonoBehaviour {
     }
 
     IEnumerator stabOneAnim() {
-        int tempMode = mode;
         mode = 2;
         updateSprite();
         Vector2 currentDir = dir switch { 0 => Vector2.down, 1 => Vector2.left, 2 => Vector2.up, _ => Vector2.right };
@@ -225,7 +225,6 @@ public class playerControler : MonoBehaviour {
     }
 
     IEnumerator stabLineAnim() {
-        int tempMode = mode;
         mode = 2;
         updateSprite();
         Vector2 currentDir = dir switch { 0 => Vector2.down, 1 => Vector2.left, 2 => Vector2.up, _ => Vector2.right };
@@ -254,7 +253,6 @@ public class playerControler : MonoBehaviour {
     }
 
     IEnumerator stabSwooshAnim() {
-        int tempMode = mode;
         mode = 2;
         updateSprite();
         List<GameObject> swords = new List<GameObject> { Instantiate(weapon, transform), Instantiate(weapon, transform), Instantiate(weapon, transform),
@@ -283,20 +281,28 @@ public class playerControler : MonoBehaviour {
         if (mode != 1) {
             switch (dir) {
                 case 0:
-                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down)) {
                         mode = 1;
+                        tempMode = 1;
+                    }
                     break;
                 case 1:
-                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left)) {
                         mode = 1;
+                        tempMode = 1;
+                    }
                     break;
                 case 2:
-                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up)) {
                         mode = 1;
+                        tempMode = 1;
+                    }
                     break;
                 case 3:
-                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right))
+                    if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right)) {
                         mode = 1;
+                        tempMode = 1;
+                    }
                     break;
             }
         }
@@ -311,6 +317,7 @@ public class playerControler : MonoBehaviour {
                         Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down + new Vector2(0.5f, 0.5f);
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
+                        tempMode = 0;
                     }
                     break;
                 case 1:
@@ -319,6 +326,7 @@ public class playerControler : MonoBehaviour {
                         Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left + new Vector2(0.5f, 0.5f);
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
+                        tempMode = 0;
                     }
                     break;
                 case 2:
@@ -327,6 +335,7 @@ public class playerControler : MonoBehaviour {
                         Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up + new Vector2(0.5f, 0.5f);
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
+                        tempMode = 0;
                     }
                     break;
                 case 3:
@@ -335,6 +344,7 @@ public class playerControler : MonoBehaviour {
                         Vector2 pos = Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right + new Vector2(0.5f, 0.5f);
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
+                        tempMode = 0;
                     }
                     break;
             }
