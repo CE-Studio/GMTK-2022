@@ -1170,6 +1170,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.500001
       objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: dir
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4852104183386217926, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
       propertyPath: maxRolls
       value: 3

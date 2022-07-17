@@ -8,6 +8,9 @@ public class EnemyManager
     public static List<Enemy> enemies = new List<Enemy>();
     public static playerControler playerScript = GameObject.Find("Grid/player").GetComponent<playerControler>();
 
+    public static AudioClip openBlueDoors = Resources.Load<AudioClip>("Sounds/LevelDoorOpen");
+    public static AudioClip killEnemy = Resources.Load<AudioClip>("Sounds/KillEnemy");
+
     public static void MoveEnemies() {
         foreach (Enemy enemy in enemies) {
             enemy.Move();
@@ -30,6 +33,7 @@ public class EnemyManager
         if (enemies.Count == 0) {
             removeLevelDoors();
         }
+        playerControler.thePlayer.aplay(killEnemy);
     }
 
     public static void removeLevelDoors() {
@@ -43,5 +47,6 @@ public class EnemyManager
                 playerScript.endLevelTiles.Add(new Vector2Int(position.x, position.y));
             }
         }
+        playerControler.thePlayer.aplay(openBlueDoors);
     }
 }

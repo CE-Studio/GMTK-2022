@@ -43,12 +43,14 @@ public class playerControler : MonoBehaviour {
     public AudioClip stab;
     public AudioClip tcc;
     public AudioClip tccw;
+    public AudioClip endLevel;
 
 
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
         thePlayer = this;
         thisLevel = SceneManager.GetActiveScene();
+        updateSprite();
     }
 
     void Update() {
@@ -57,6 +59,7 @@ public class playerControler : MonoBehaviour {
             GetComponent<SpriteRenderer>().enabled = false;
             manager.setButtonState(false);
             deathTimer -= Time.deltaTime;
+            aplay(die);
         }
         if (deathTimer != 1)
             deathTimer -= Time.deltaTime;
@@ -65,6 +68,7 @@ public class playerControler : MonoBehaviour {
 
         if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition)) && endTimer == 1) {
             endTimer -= Time.deltaTime;
+            aplay(endLevel);
         }
         if (endTimer != 1)
             endTimer -= Time.deltaTime;
@@ -73,6 +77,9 @@ public class playerControler : MonoBehaviour {
             string newSceneName = currentSceneName.Substring(0, currentSceneName.Length - 1) + (int.Parse(currentSceneName.Substring(currentSceneName.Length - 1, 1)) + 1);
             loadLevel(newSceneName);
         }
+
+        if (Input.GetKey(KeyCode.R))
+            loadLevel(thisLevel.name);
     }
 
     public void loadLevel(string levelName) {
@@ -167,6 +174,7 @@ public class playerControler : MonoBehaviour {
 
     void moveLocally(Vector2Int pos) {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f + pos.x, Mathf.Floor(transform.localPosition.y) + 0.5f + pos.y, transform.localPosition.z);
+        transform.localPosition = new Vector2(Mathf.Round(transform.localPosition.x * 2) * 0.5f, Mathf.Round(transform.localPosition.y * 2) * 0.5f);
     }
 
     void turn(bool cw) {
@@ -215,7 +223,7 @@ public class playerControler : MonoBehaviour {
         if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition), out i)) i.press();
         switch (dir) {
             case 0:
-                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down, out i));
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down, out i))
                     i.press();
                 aplay(throwSwitch);
                 break;
@@ -523,12 +531,12 @@ public class playerControler : MonoBehaviour {
         }
     }
 
-    void aplay(AudioClip a) {
+    public void aplay(AudioClip a) {
         mp.clip = a;
         mp.Play();
     }
 
-    void aplay(AudioClip[] a) {
+    public void aplay(AudioClip[] a) {
         mp.clip = a[UnityEngine.Random.Range(0, a.Length)];
         mp.Play();
     }

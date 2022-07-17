@@ -160,6 +160,7 @@ MonoBehaviour:
   stab: {fileID: 8300000, guid: fdb9a753c67ec774480c391cc3d4f96d, type: 3}
   tcc: {fileID: 8300000, guid: b9cd8f1c94639cb47bd315cd7ce4403f, type: 3}
   tccw: {fileID: 8300000, guid: 8b2e898378b666b4a968fcc3cdb33aa7, type: 3}
+  endLevel: {fileID: 8300000, guid: 1533e8940dbfeb54cbab5a9e3d694e04, type: 3}
 --- !u!82 &7568978514844392861
 AudioSource:
   m_ObjectHideFlags: 0

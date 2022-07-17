@@ -31,6 +31,9 @@ public class DieManager:MonoBehaviour {
     private int managerState = 0; // 0 = waiting, 1 = rolling
     private int lastDieRolled = 0; // 0 = move, 1 = turn, 2 = action
 
+    public AudioSource sfx;
+    public AudioClip queueDieSfx;
+
     public void Start() {
         setButtonState(true);
         queueBar = transform.GetChild(0).gameObject;
@@ -42,6 +45,8 @@ public class DieManager:MonoBehaviour {
         dieObj = Resources.Load<GameObject>("Objects/Die");
 
         dieSize = dieObj.GetComponent<RectTransform>().sizeDelta;
+
+        sfx = GetComponent<AudioSource>();
     }
 
     public void Update() {
