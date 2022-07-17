@@ -86,6 +86,7 @@ public class Enemy : MonoBehaviour
     }
 
     public void kill() {
-
+        EnemyManager.removeEnemy(this);
+        Destroy(gameObject);
     }
 }

@@ -16,6 +16,8 @@ public class playerControler : MonoBehaviour {
 
     public static playerControler thePlayer;
 
+    public List<Vector2Int> endLevelTiles = new List<Vector2Int>();
+
     [Serializable]
     public struct spritelist {
         public Sprite[] sprites;
@@ -31,7 +33,10 @@ public class playerControler : MonoBehaviour {
     }
 
     void Update() {
-        
+        if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.position))) {
+            // End level code here
+            Debug.Log("ay you beat it yay");
+        }
     }
 
     bool isLocallyTraversable(Vector2Int pos) {

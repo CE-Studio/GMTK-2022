@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemyManager
 {
@@ -21,5 +22,24 @@ public class EnemyManager
         }
         result = null;
         return false;
+    }
+
+    public static void removeEnemy(Enemy enemy) {
+        enemies.Remove(enemy);
+        if (enemies.Count == 0) {
+            removeLevelDoors();
+        }
+    }
+
+    public static void removeLevelDoors() {
+        Debug.Log("Searching for blue doors");
+        Tilemap elementMap = GameObject.Find("Grid/Elements").GetComponent<Tilemap>();
+        foreach (Vector3Int position in elementMap.cellBounds.allPositionsWithin) {
+            if (!elementMap.HasTile(position))
+                continue;
+            Tile thisTile = elementMap.GetTile<Tile>(position);
+            if (thisTile.name.Contains("LevelDoor"))
+                elementMap.SetTile(position, null);
+        }
     }
 }
