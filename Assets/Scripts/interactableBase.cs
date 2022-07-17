@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class interactableBase : MonoBehaviour {
 
+    public Tilemap playarea;
     public Sprite offsprite;
     public Sprite onsprite;
     public SpriteRenderer sr;
@@ -43,8 +44,22 @@ public class interactableBase : MonoBehaviour {
                                                                                                 {"door13_closed", Resources.Load<Tile>("Tiles/door13_open")},
                                                                                                 {"door14_closed", Resources.Load<Tile>("Tiles/door14_open")},
                                                                                                 {"door15_closed", Resources.Load<Tile>("Tiles/door15_open")},
-                                                                                                {"door16_closed", Resources.Load<Tile>("Tiles/door16_open")},
-                                                                                                };
+                                                                                                {"door16_closed", Resources.Load<Tile>("Tiles/door16_open")}};
+
+    public bool interactable = false;
+
+    public static List<interactableBase> switches = new List<interactableBase>();
+
+    void Start() {
+        transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
+        switches.Add(this);
+    }
+
+    public void press() {
+        if (interactable) {
+            toggle();
+        }
+    }
 
     public void toggle() {
         state = !state;
@@ -53,5 +68,26 @@ public class interactableBase : MonoBehaviour {
         } else {
             sr.sprite = offsprite;
         }
+        foreach (Vector2Int i in outputs) {
+            string h = playarea.GetTile<Tile>(new Vector3Int(i.x, i.y, 0)).name;
+            if (replacedict.ContainsKey(h)) {
+                playarea.SetTile(new Vector3Int(i.x, i.y, 0), replacedict[h]);
+            }
+        }
+    }
+
+    public bool isStoodOn() {
+        return (Vector2Int.FloorToInt(transform.localPosition) == Vector2Int.FloorToInt(playerControler.thePlayer.transform.localPosition));
+    }
+
+    public static bool getAt(Vector2Int pos, out interactableBase result) {
+        foreach (interactableBase i in switches) {
+            if (Vector2Int.FloorToInt(i.transform.localPosition) == pos) {
+                result = i;
+                return true;
+            }
+        }
+        result = null;
+        return false;
     }
 }
