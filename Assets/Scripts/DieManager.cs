@@ -61,7 +61,7 @@ public class DieManager:MonoBehaviour {
         }
     }
 
-    void setButtonState(bool clickable) {
+    public void setButtonState(bool clickable) {
         foreach (Button i in buttons) {
             i.interactable = clickable;
         }

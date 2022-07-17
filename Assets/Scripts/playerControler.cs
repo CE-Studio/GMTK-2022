@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 using System;
 
 public class playerControler : MonoBehaviour {
@@ -17,6 +18,8 @@ public class playerControler : MonoBehaviour {
     public static playerControler thePlayer;
 
     public List<Vector2Int> endLevelTiles = new List<Vector2Int>();
+    private float deathTimer = 1;
+    public Scene thisLevel;
 
     [Serializable]
     public struct spritelist {
@@ -30,13 +33,34 @@ public class playerControler : MonoBehaviour {
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
         thePlayer = this;
+        thisLevel = SceneManager.GetActiveScene();
     }
 
     void Update() {
+        Enemy temp;
+        if (EnemyManager.getAt(Vector2Int.FloorToInt(transform.localPosition), out temp) && deathTimer == 1) {
+            GetComponent<SpriteRenderer>().enabled = false;
+            manager.setButtonState(false);
+            deathTimer -= Time.deltaTime;
+        }
+        if (deathTimer != 1)
+            deathTimer -= Time.deltaTime;
+        if (deathTimer <= 0)
+           loadLevel(thisLevel.name);
+
         if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.position))) {
             // End level code here
             Debug.Log("ay you beat it yay");
         }
+    }
+
+    public void loadLevel(string levelName) {
+        manager.StopAllCoroutines();
+        StopAllCoroutines();
+        boxManager.boxes.Clear();
+        EnemyManager.enemies.Clear();
+        interactableBase.switches.Clear();
+        SceneManager.LoadScene(levelName);
     }
 
     bool isLocallyTraversable(Vector2Int pos) {
