@@ -90,6 +90,7 @@ public class DieManager:MonoBehaviour {
         newDie.dieRect.localPosition = new Vector2(queueRect.localPosition.x, queueRect.localPosition.y + 512);
         dice.Add(newDie);
         playerControler.thePlayer.visualizePath(dice.ToArray());
+        sfx.PlayOneShot(queueDieSfx);
     }
 
     public void RemoveFrontDie() {

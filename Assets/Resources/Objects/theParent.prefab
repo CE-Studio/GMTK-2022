@@ -302,7 +302,7 @@ MonoBehaviour:
   - {fileID: -3967944346126386904, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
   - {fileID: 129572150573724943, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
   - {fileID: -7710241764388013416, guid: 14ffe0715cac3914092611150d3aac38, type: 3}
-  sfx: {fileID: 0}
+  sfx: {fileID: 5845307647468913660}
   queueDieSfx: {fileID: 8300000, guid: 34e51e594f7306f4da9b01ea21aff1e8, type: 3}
 --- !u!82 &5845307647468913660
 AudioSource:
