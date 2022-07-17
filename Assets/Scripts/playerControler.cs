@@ -51,6 +51,8 @@ public class playerControler : MonoBehaviour {
         thePlayer = this;
         thisLevel = SceneManager.GetActiveScene();
         updateSprite();
+        endTimer = 1;
+        deathTimer = 1;
     }
 
     void Update() {
@@ -176,7 +178,6 @@ public class playerControler : MonoBehaviour {
 
     void moveLocally(Vector2Int pos) {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f + pos.x, Mathf.Floor(transform.localPosition.y) + 0.5f + pos.y, transform.localPosition.z);
-        transform.localPosition = new Vector2(Mathf.Round(transform.localPosition.x * 2) * 0.5f, Mathf.Round(transform.localPosition.y * 2) * 0.5f);
     }
 
     void turn(bool cw) {

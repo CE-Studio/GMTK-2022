@@ -1174,6 +1174,42 @@ PrefabInstance:
       propertyPath: dir
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[0].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[1].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[2].x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[2].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[3].x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 589723058226832095, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
+      propertyPath: endLevelTiles.Array.data[3].y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4852104183386217926, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
       propertyPath: maxRolls
       value: 3

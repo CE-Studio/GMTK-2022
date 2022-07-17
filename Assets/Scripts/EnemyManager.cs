@@ -44,7 +44,6 @@ public class EnemyManager
             Tile thisTile = elementMap.GetTile<Tile>(position);
             if (thisTile.name.Contains("LevelDoor")) {
                 elementMap.SetTile(position, null);
-                playerScript.endLevelTiles.Add(new Vector2Int(position.x, position.y));
             }
         }
         playerControler.thePlayer.aplay(openBlueDoors);
