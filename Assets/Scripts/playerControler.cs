@@ -78,8 +78,10 @@ public class playerControler : MonoBehaviour {
             loadLevel(newSceneName);
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
             loadLevel(thisLevel.name);
+        if (Input.GetKeyDown(KeyCode.Escape))
+            loadLevel("titleScreen");
     }
 
     public void loadLevel(string levelName) {
