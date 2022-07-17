@@ -32,6 +32,19 @@ public class playerControler : MonoBehaviour {
     public int mode = 0; // 1 = normal, 2 = carrying box, 3 = attacking
     private int tempMode = 0;
 
+    public AudioSource mp;
+    public AudioClip die;
+    public AudioClip pickBox;
+    public AudioClip pickDie;
+    public AudioClip placeBox;
+    public AudioClip shoot;
+    public AudioClip[] step;
+    public AudioClip throwSwitch;
+    public AudioClip stab;
+    public AudioClip tcc;
+    public AudioClip tccw;
+
+
     void Start() {
         transform.localPosition = new Vector3(Mathf.Floor(transform.localPosition.x) + 0.5f, Mathf.Floor(transform.localPosition.y) + 0.5f, transform.localPosition.z);
         thePlayer = this;
@@ -131,6 +144,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void walk() {
+        aplay(step);
         switch (dir) {
             case 0:
                 if (isLocallyTraversable(Vector2Int.down))
@@ -158,8 +172,10 @@ public class playerControler : MonoBehaviour {
     void turn(bool cw) {
         if (cw) {
             dir += 1;
+            aplay(tcc);
         } else {
             dir -= 1;
+            aplay(tccw);
         }
         if (dir > 3) {
             dir = 0;
@@ -199,21 +215,24 @@ public class playerControler : MonoBehaviour {
         if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition), out i)) i.press();
         switch (dir) {
             case 0:
-                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down, out i))
-                    print("Pressing!");
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down, out i));
                     i.press();
+                aplay(throwSwitch);
                 break;
             case 1:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left, out i))
                     i.press();
+                aplay(throwSwitch);
                 break;
             case 2:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up, out i))
                     i.press();
+                aplay(throwSwitch);
                 break;
             case 3:
                 if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right, out i))
                     i.press();
+                aplay(throwSwitch);
                 break;
         }
     }
@@ -296,24 +315,28 @@ public class playerControler : MonoBehaviour {
                     if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down)) {
                         mode = 1;
                         tempMode = 1;
+                        aplay(pickBox);
                     }
                     break;
                 case 1:
                     if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left)) {
                         mode = 1;
                         tempMode = 1;
+                        aplay(pickBox);
                     }
                     break;
                 case 2:
                     if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up)) {
                         mode = 1;
                         tempMode = 1;
+                        aplay(pickBox);
                     }
                     break;
                 case 3:
                     if (boxManager.grab(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right)) {
                         mode = 1;
                         tempMode = 1;
+                        aplay(pickBox);
                     }
                     break;
             }
@@ -330,6 +353,7 @@ public class playerControler : MonoBehaviour {
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
                         tempMode = 0;
+                        aplay(placeBox);
                     }
                     break;
                 case 1:
@@ -339,6 +363,7 @@ public class playerControler : MonoBehaviour {
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
                         tempMode = 0;
+                        aplay(placeBox);
                     }
                     break;
                 case 2:
@@ -348,6 +373,7 @@ public class playerControler : MonoBehaviour {
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
                         tempMode = 0;
+                        aplay(placeBox);
                     }
                     break;
                 case 3:
@@ -357,6 +383,7 @@ public class playerControler : MonoBehaviour {
                         boxManager.lastheld.transform.localPosition = pos;
                         mode = 0;
                         tempMode = 0;
+                        aplay(placeBox);
                     }
                     break;
             }
@@ -437,6 +464,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabOne() {
+        aplay(stab);
         StartCoroutine(stabOneAnim());
         switch (dir) {
             case 0:
@@ -455,6 +483,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabLine() {
+        aplay(shoot);
         StartCoroutine(stabLineAnim());
         for (int i = 1; i < 6; i++) {
             switch (dir) {
@@ -475,6 +504,7 @@ public class playerControler : MonoBehaviour {
     }
 
     void stabSwoosh() {
+        aplay(stab);
         StartCoroutine(stabSwooshAnim());
         stabLocally(new Vector2Int(0, -1));
         stabLocally(new Vector2Int(-1, -1));
@@ -491,5 +521,15 @@ public class playerControler : MonoBehaviour {
         if (EnemyManager.getAt(Vector2Int.FloorToInt(transform.localPosition) + pos, out hit)) {
             hit.kill();
         }
+    }
+
+    void aplay(AudioClip a) {
+        mp.clip = a;
+        mp.Play();
+    }
+
+    void aplay(AudioClip[] a) {
+        mp.clip = a[UnityEngine.Random.Range(0, a.Length)];
+        mp.Play();
     }
 }
