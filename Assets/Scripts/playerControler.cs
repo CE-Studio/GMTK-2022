@@ -175,9 +175,34 @@ public class playerControler : MonoBehaviour {
                 stabSwoosh();
                 break;
             case 6:
+                interact();
                 break;
         }
         updateSprite();
+    }
+
+    void interact() {
+        interactableBase i;
+        if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition), out i)) i.press();
+        switch (dir) {
+            case 0:
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.down, out i))
+                    print("Pressing!");
+                    i.press();
+                break;
+            case 2:
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.left, out i))
+                    i.press();
+                break;
+            case 3:
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.up, out i))
+                    i.press();
+                break;
+            case 4:
+                if (interactableBase.getAt(Vector2Int.FloorToInt(transform.localPosition) + Vector2Int.right, out i))
+                    i.press();
+                break;
+        }
     }
 
     IEnumerator stabOneAnim() {
