@@ -49,7 +49,7 @@ public class playerControler : MonoBehaviour {
         if (deathTimer <= 0)
            loadLevel(thisLevel.name);
 
-        if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.position))) {
+        if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition))) {
             // End level code here
             Debug.Log("ay you beat it yay");
         }
@@ -95,27 +95,32 @@ public class playerControler : MonoBehaviour {
 
     IEnumerator move(DieManager.Die[] instructions) {
         foreach (DieManager.Die i in instructions) {
-            switch (i.dieData.x) {
-                default:
-                    int h = i.dieData.y;
-                    while (h > 0) {
-                        walk();
-                        h -= 1;
+            if (!endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition))) {
+                switch (i.dieData.x) {
+                    default:
+                        int h = i.dieData.y;
+                        while (h > 0) {
+                            walk();
+                            h -= 1;
+                            if (endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition)))
+                                h = 0;
+                            else
+                                yield return new WaitForSeconds(0.25f);
+                        }
+                        break;
+                    case 1:
+                        turn(i.dieData.y == 2);
                         yield return new WaitForSeconds(0.25f);
-                    }
-                    break;
-                case 1:
-                    turn(i.dieData.y == 2);
-                    yield return new WaitForSeconds(0.25f);
-                    break;
-                case 2:
-                    action(i.dieData.y);
-                    yield return new WaitForSeconds(0.25f);
-                    break;
+                        break;
+                    case 2:
+                        action(i.dieData.y);
+                        yield return new WaitForSeconds(0.25f);
+                        break;
+                }
             }
             manager.RemoveFrontDie();
         }
-        manager.endTurn();
+        manager.endTurn(!endLevelTiles.Contains(Vector2Int.FloorToInt(transform.localPosition)));
     }
 
     void walk() {

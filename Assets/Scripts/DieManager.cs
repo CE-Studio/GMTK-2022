@@ -112,8 +112,8 @@ public class DieManager:MonoBehaviour {
         }
     }
 
-    public void endTurn() {
-        setButtonState(true);
+    public void endTurn(bool reactivateButtons = true) {
+        setButtonState(reactivateButtons);
         EnemyManager.MoveEnemies();
     }
 

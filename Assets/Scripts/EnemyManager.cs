@@ -6,6 +6,7 @@ using UnityEngine.Tilemaps;
 public class EnemyManager
 {
     public static List<Enemy> enemies = new List<Enemy>();
+    public static playerControler playerScript = GameObject.Find("Grid/player").GetComponent<playerControler>();
 
     public static void MoveEnemies() {
         foreach (Enemy enemy in enemies) {
@@ -38,8 +39,10 @@ public class EnemyManager
             if (!elementMap.HasTile(position))
                 continue;
             Tile thisTile = elementMap.GetTile<Tile>(position);
-            if (thisTile.name.Contains("LevelDoor"))
+            if (thisTile.name.Contains("LevelDoor")) {
                 elementMap.SetTile(position, null);
+                playerScript.endLevelTiles.Add(new Vector2Int(position.x, position.y));
+            }
         }
     }
 }

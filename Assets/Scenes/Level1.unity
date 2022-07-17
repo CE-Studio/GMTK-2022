@@ -303,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4852104183386217926, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
       propertyPath: maxRolls
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4852104183833466148, guid: f362e603b3534114092297c2b72f1aaa, type: 3}
       propertyPath: m_Name
